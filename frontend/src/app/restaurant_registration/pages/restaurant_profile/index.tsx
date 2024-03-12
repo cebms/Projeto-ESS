@@ -29,6 +29,22 @@ const RestaurantProfilePage = () => {
   const [snackBarSeverity, setSnackBarSeverity] = useState<any>("error");
   const api = new APIService();
 
+  const setButtonColor = () => {
+    return isEditing ? "#54b544" : "#251fa5";
+  };
+
+  const setButtonText = () => {
+    return isEditing ? "Salvar" : "Editar dados";
+  };
+
+  const setButtonId = () => {
+    return isEditing ? "salvar" : "editar";
+  };
+
+  const setButtonIcon = () => {
+    return isEditing ? FaSave : MdEdit;
+  };
+
   useEffect(() => {
     // setUserContext({
     //   id: "1",
@@ -119,12 +135,12 @@ const RestaurantProfilePage = () => {
       <div className={styles.pageWrapper}>
         <div className={styles.profileDataContainer}>
           <IconButton
-            icon={isEditing ? FaSave : MdEdit}
-            color={isEditing ? "#54b544" : "#251fa5"}
-            text={isEditing ? "Salvar" : "Editar dados"}
+            icon={setButtonIcon()}
+            color={setButtonColor()}
+            text={setButtonText()}
             disabled={!(isCNPJValid && isEmailValid)}
             type="button"
-            id={isEditing ? "salvar" : "editar"}
+            id={setButtonId()}
             onClick={handleToggleEdit}
           />
           <input
